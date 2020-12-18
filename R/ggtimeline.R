@@ -29,6 +29,7 @@
 #' @export
 
 
+
 ggtimeline <- function(df, date_col, title_col, color_col = NULL,
                        time_span, time_space){
 
