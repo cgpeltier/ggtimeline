@@ -39,6 +39,9 @@ ggtimeline(nyt_data4, date_col = "pub_date", title_col = "main_headline", color_
           axis.line.x =element_blank(),
           legend.position = "bottom")
 ```
+
+![](https://github.com/cgpeltier/ggtimeline/blob/master/images/ggtimeline_ex1.png?raw=true)
+
 ggtimeline requires you to specify the columns in your dataframe related to the date (date_col), the title (title_col, the text that will actually be in your timeline). Specifying a column that contains groups for timeline point colors is optional. 
 
 The time_span argument must be one of c("day", "month", "year"), while the time_space argument specifies the number of days, months, or years that aren't shown in between the days/months/years that are shown in the timeline. 
