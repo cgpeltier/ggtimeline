@@ -44,6 +44,7 @@ ggtimeline <- function(df, date_col, title_col, color_col = NULL,
              direction = rep(directions, length.out = length_dates))
 
 
+
     min_date <- df2 %>% pull({{date_col}}) %>% min()
     max_date <- df2 %>% pull({{date_col}}) %>% max()
 
