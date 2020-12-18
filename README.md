@@ -1,6 +1,6 @@
 # ggtimeline
 
-ggtimeline allows you to create static timeline charts from time series data based on ggplot2 syntax. 
+ggtimeline allows you to create static timeline charts from time series data based on ggplot2 syntax. It is based off of [Ben Alex Keen's work](https://benalexkeen.com/creating-a-timeline-graphic-using-r-and-ggplot2/). 
 
 ## Getting Started
 
