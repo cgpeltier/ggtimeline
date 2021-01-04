@@ -7,6 +7,7 @@
 #' @param color_col Name of column that contains groups to color points
 #' @param time_span One of "day", "month", or "year"
 #' @param time_space Number of days/months/years between those shown on timeline
+#' @param positions Vector of timeline point positions
 #'
 #' @return ggplot-based timeline
 #' @importFrom dplyr pull
@@ -31,10 +32,9 @@
 
 
 ggtimeline <- function(df, date_col, title_col, color_col = NULL,
-                       time_span, time_space){
+                       time_span, time_space,
+                       positions = c(0.5, -0.5, 1.0, -1.0, 1.25, -1.25, 1.5, -1.5)){
 
-
-    positions <- c(0.5, -0.5, 1.0, -1.0, 1.25, -1.25, 1.5, -1.5)
     directions <- c(1, -1)
 
     length_dates <- df %>% pull({{date_col}}) %>% length()
@@ -55,33 +55,33 @@ ggtimeline <- function(df, date_col, title_col, color_col = NULL,
         tibble() %>%
         rename(date_range = ".") %>%
         mutate(date_range = ymd(date_range),
-               date_format = format(date_range, '%b  %Y'),
+               date_format = format(date_range, '%b   %Y'),
                keep = rep(as.numeric(paste(c(1, rep(0, times = time_space)))),
                           length.out = nrow(.))) %>%
         filter(keep == 1)
     }
 
     if(time_span == "year"){
-      date_range_df <- seq(min_date - years(1),
-                           max_date + years(1),
+      date_range_df <- seq(min_date - lubridate::years(1),
+                           max_date + lubridate::years(1),
                            by = time_span) %>%
         tibble() %>%
         rename(date_range = ".") %>%
         mutate(date_range = ymd(date_range),
-               date_format = format(date_range, '%b  %Y'),
+               date_format = format(date_range, '%b   %Y'),
                keep = rep(as.numeric(paste(c(1, rep(0, times = time_space)))),
                           length.out = nrow(.))) %>%
         filter(keep == 1)
     }
 
     if(time_span == "day"){
-      date_range_df <- seq(min_date - days(1),
-                           max_date + days(1),
+      date_range_df <- seq(min_date - lubridate::days(1),
+                           max_date + lubridate::days(1),
                            by = time_span) %>%
         tibble() %>%
         rename(date_range = ".") %>%
         mutate(date_range = ymd(date_range),
-               date_format = format(date_range, '%d  %b  %Y'),
+               date_format = format(date_range, '%d %b  %Y   '),
                keep = rep(as.numeric(paste(c(1, rep(0, times = time_space)))),
                           length.out = nrow(.))) %>%
         filter(keep == 1)
